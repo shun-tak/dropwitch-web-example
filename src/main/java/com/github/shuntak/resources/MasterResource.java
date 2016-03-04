@@ -1,7 +1,7 @@
 package com.github.shuntak.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.github.shuntak.api.ResponseBody;
+import com.github.shuntak.api.ResponseMasterBody;
 import com.github.shuntak.api.data.MasterResponseData;
 import com.github.shuntak.entity.dao.MasterCommonDao;
 import io.dropwizard.hibernate.UnitOfWork;
@@ -25,8 +25,8 @@ public class MasterResource {
 
     @GET
     @UnitOfWork
-    public ResponseBody get() {
-        return new ResponseBody(this.data.orElseGet(() -> {
+    public ResponseMasterBody get() {
+        return new ResponseMasterBody(this.data.orElseGet(() -> {
             List common = masterCommonDao.getAll();
             this.data = Optional.of(new MasterResponseData(common));
             return this.data.orElse(null);
@@ -35,8 +35,8 @@ public class MasterResource {
 
     @DELETE
     @Path("/cache")
-    public ResponseBody deleteCache() {
+    public ResponseMasterBody deleteCache() {
         this.data = Optional.empty();
-        return new ResponseBody(null);
+        return new ResponseMasterBody(null);
     }
 }

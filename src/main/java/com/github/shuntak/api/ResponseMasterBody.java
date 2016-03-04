@@ -3,18 +3,18 @@ package com.github.shuntak.api;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseBody {
+public class ResponseMasterBody {
     private final boolean result;
     private final Object data;
 
     @JsonCreator
-    public ResponseBody() {
+    public ResponseMasterBody() {
         this.result = false;
         this.data = null;
     }
 
     @JsonCreator
-    public ResponseBody(@JsonProperty Object data) {
+    public ResponseMasterBody(@JsonProperty Object data) {
         this.result = true;
         this.data = data;
     }
