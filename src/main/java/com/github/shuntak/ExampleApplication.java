@@ -9,6 +9,9 @@ import com.github.shuntak.entity.dao.MasterCommonDao;
 import com.github.shuntak.entity.dao.PostDao;
 import com.github.shuntak.entity.dao.UserDao;
 import com.github.shuntak.resources.MasterResource;
+import com.github.shuntak.resources.SearchItemResource;
+import com.github.shuntak.resources.SearchPostResource;
+import com.github.shuntak.resources.SearchUserResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -82,5 +85,8 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
 
         environment.jersey().register(JacksonMessagePackProvider.class);
         environment.jersey().register(new MasterResource(masterCommonDao));
+        environment.jersey().register(new SearchItemResource(itemDao, postDao));
+        environment.jersey().register(new SearchPostResource(itemDao, postDao, userDao));
+        environment.jersey().register(new SearchUserResource(postDao, userDao));
     }
 }
