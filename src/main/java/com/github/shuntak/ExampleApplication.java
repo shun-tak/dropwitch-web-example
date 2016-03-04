@@ -4,10 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.github.shuntak.entity.MasterCommon;
 import com.github.shuntak.entity.User;
+import com.github.shuntak.entity.dao.ItemDao;
 import com.github.shuntak.entity.dao.MasterCommonDao;
+import com.github.shuntak.entity.dao.PostDao;
 import com.github.shuntak.entity.dao.UserDao;
 import com.github.shuntak.resources.MasterResource;
-import com.github.shuntak.resources.UserResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -74,11 +75,12 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
 
     @Override
     public void run(ExampleConfiguration configuration, Environment environment) throws Exception {
+        final ItemDao itemDao = new ItemDao(hibernate.getSessionFactory());
         final MasterCommonDao masterCommonDao = new MasterCommonDao(hibernate.getSessionFactory());
+        final PostDao postDao = new PostDao(hibernate.getSessionFactory());
         final UserDao userDao = new UserDao(hibernate.getSessionFactory());
 
         environment.jersey().register(JacksonMessagePackProvider.class);
         environment.jersey().register(new MasterResource(masterCommonDao));
-        environment.jersey().register(new UserResource(userDao));
     }
 }

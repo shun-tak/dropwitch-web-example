@@ -1,11 +1,11 @@
 package com.github.shuntak.entity.dao;
 
-import com.github.shuntak.entity.User;
+import com.github.shuntak.entity.Item;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 
-public class UserDao extends AbstractDAO<User> {
-    public UserDao(SessionFactory factory) {
+public class ItemDao extends AbstractDAO<Item> {
+    public ItemDao(SessionFactory factory) {
         super(factory);
     }
 }

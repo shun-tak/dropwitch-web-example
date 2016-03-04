@@ -1,61 +1,66 @@
 package com.github.shuntak.entity;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class User {
-    private Long id;
-    private String name;
-    private Date createdAt;
-    private Date updatedAt;
-
-    public static User create() {
-        User user = new User();
-        user.setCreatedAt(new Date());
-        user.setUpdatedAt(new Date());
-        return user;
-    }
+    private String userId;
+    private Long userNo;
+    private Integer userPublicScore;
+    private String userFriends;
+    private String userImage;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public Long getId() {
-        return id;
+    @Column(name = "userId")
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Basic
-    @Column(name = "name", nullable = false, length = 255)
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic
-    @Column(name = "created_at", nullable = false)
-    public Date getCreatedAt() {
-        return createdAt;
+    @Column(name = "userNo")
+    public Long getUserNo() {
+        return userNo;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setUserNo(Long userNo) {
+        this.userNo = userNo;
     }
 
     @Basic
-    @Column(name = "updated_at", nullable = false)
-    public Date getUpdatedAt() {
-        return updatedAt;
+    @Column(name = "userPublicScore")
+    public Integer getUserPublicScore() {
+        return userPublicScore;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setUserPublicScore(Integer userPublicScore) {
+        this.userPublicScore = userPublicScore;
+    }
+
+    @Basic
+    @Column(name = "userFriends")
+    public String getUserFriends() {
+        return userFriends;
+    }
+
+    public void setUserFriends(String userFriends) {
+        this.userFriends = userFriends;
+    }
+
+    @Basic
+    @Column(name = "userImage")
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     @Override
@@ -65,20 +70,23 @@ public class User {
 
         User user = (User) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (createdAt != null ? !createdAt.equals(user.createdAt) : user.createdAt != null) return false;
-        if (updatedAt != null ? !updatedAt.equals(user.updatedAt) : user.updatedAt != null) return false;
+        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (userNo != null ? !userNo.equals(user.userNo) : user.userNo != null) return false;
+        if (userPublicScore != null ? !userPublicScore.equals(user.userPublicScore) : user.userPublicScore != null)
+            return false;
+        if (userFriends != null ? !userFriends.equals(user.userFriends) : user.userFriends != null) return false;
+        if (userImage != null ? !userImage.equals(user.userImage) : user.userImage != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
-        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (userNo != null ? userNo.hashCode() : 0);
+        result = 31 * result + (userPublicScore != null ? userPublicScore.hashCode() : 0);
+        result = 31 * result + (userFriends != null ? userFriends.hashCode() : 0);
+        result = 31 * result + (userImage != null ? userImage.hashCode() : 0);
         return result;
     }
 }

@@ -8,6 +8,8 @@
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <mapping class="com.github.shuntak.entity.MasterCommon"/>
         <mapping class="com.github.shuntak.entity.User"/>
+        <mapping class="com.github.shuntak.entity.Item"/>
+        <mapping class="com.github.shuntak.entity.Post"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>
