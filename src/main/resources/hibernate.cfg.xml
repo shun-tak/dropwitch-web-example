@@ -4,10 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/dropwitch</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/example</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <mapping class="com.github.dropwitch.entity.MasterCommon"/>
-        <mapping class="com.github.dropwitch.entity.User"/>
+        <mapping class="com.github.shuntak.entity.MasterCommon"/>
+        <mapping class="com.github.shuntak.entity.User"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

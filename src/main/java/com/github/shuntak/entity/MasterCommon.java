@@ -1,10 +1,10 @@
-package com.github.dropwitch.entity;
+package com.github.shuntak.entity;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "master_common", schema = "dropwitch")
+@Table(name = "master_common", schema = "example")
 public class MasterCommon {
     private Integer id;
     private String key;

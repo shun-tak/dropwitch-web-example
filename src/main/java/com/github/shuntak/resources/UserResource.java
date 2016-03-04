@@ -1,10 +1,10 @@
-package com.github.dropwitch.resources;
+package com.github.shuntak.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.github.dropwitch.api.ResponseBody;
-import com.github.dropwitch.api.data.UserRegisterRequestData;
-import com.github.dropwitch.entity.User;
-import com.github.dropwitch.entity.dao.UserDao;
+import com.github.shuntak.api.ResponseBody;
+import com.github.shuntak.api.data.UserRegisterRequestData;
+import com.github.shuntak.entity.User;
+import com.github.shuntak.entity.dao.UserDao;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.ws.rs.*;

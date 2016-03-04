@@ -1,9 +1,9 @@
-package com.github.dropwitch.resources;
+package com.github.shuntak.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.github.dropwitch.api.ResponseBody;
-import com.github.dropwitch.api.data.MasterResponseData;
-import com.github.dropwitch.entity.dao.MasterCommonDao;
+import com.github.shuntak.api.ResponseBody;
+import com.github.shuntak.api.data.MasterResponseData;
+import com.github.shuntak.entity.dao.MasterCommonDao;
 import io.dropwizard.hibernate.UnitOfWork;
 
 import javax.ws.rs.*;

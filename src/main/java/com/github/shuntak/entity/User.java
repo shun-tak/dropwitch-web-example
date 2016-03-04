@@ -1,4 +1,4 @@
-package com.github.dropwitch.entity;
+package com.github.shuntak.entity;
 
 import javax.persistence.*;
 import java.util.Date;

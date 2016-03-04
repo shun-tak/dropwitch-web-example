@@ -1,6 +1,6 @@
-package com.github.dropwitch.entity.dao;
+package com.github.shuntak.entity.dao;
 
-import com.github.dropwitch.entity.MasterCommon;
+import com.github.shuntak.entity.MasterCommon;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
 

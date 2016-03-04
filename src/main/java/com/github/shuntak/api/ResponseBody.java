@@ -1,4 +1,4 @@
-package com.github.dropwitch.api;
+package com.github.shuntak.api;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

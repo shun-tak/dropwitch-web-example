@@ -1,13 +1,13 @@
-package com.github.dropwitch;
+package com.github.shuntak;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.github.dropwitch.entity.MasterCommon;
-import com.github.dropwitch.entity.User;
-import com.github.dropwitch.entity.dao.MasterCommonDao;
-import com.github.dropwitch.entity.dao.UserDao;
-import com.github.dropwitch.resources.MasterResource;
-import com.github.dropwitch.resources.UserResource;
+import com.github.shuntak.entity.MasterCommon;
+import com.github.shuntak.entity.User;
+import com.github.shuntak.entity.dao.MasterCommonDao;
+import com.github.shuntak.entity.dao.UserDao;
+import com.github.shuntak.resources.MasterResource;
+import com.github.shuntak.resources.UserResource;
 import io.dropwizard.Application;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 
-public class DropwitchApplication extends Application<DropwitchConfiguration> {
+public class ExampleApplication extends Application<ExampleConfiguration> {
     @Provider
     @Consumes("application/x-msgpack")
     @Produces("application/x-msgpack")
@@ -40,40 +40,40 @@ public class DropwitchApplication extends Application<DropwitchConfiguration> {
         }
     }
 
-    private final HibernateBundle<DropwitchConfiguration> hibernate = new HibernateBundle<DropwitchConfiguration>(
+    private final HibernateBundle<ExampleConfiguration> hibernate = new HibernateBundle<ExampleConfiguration>(
             MasterCommon.class,
             User.class
     ) {
         @Override
-        public DataSourceFactory getDataSourceFactory(DropwitchConfiguration configuration) {
+        public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
             return configuration.getDataSourceFactory();
         }
     };
 
-    private final MigrationsBundle<DropwitchConfiguration> migrations = new MigrationsBundle<DropwitchConfiguration>() {
+    private final MigrationsBundle<ExampleConfiguration> migrations = new MigrationsBundle<ExampleConfiguration>() {
         @Override
-        public DataSourceFactory getDataSourceFactory(DropwitchConfiguration configuration) {
+        public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
             return configuration.getDataSourceFactory();
         }
     };
 
     public static void main(String[] args) throws Exception {
-        new DropwitchApplication().run(args);
+        new ExampleApplication().run(args);
     }
 
     @Override
     public String getName() {
-        return "dropwitch";
+        return "shuntak";
     }
 
     @Override
-    public void initialize(Bootstrap<DropwitchConfiguration> bootstrap) {
+    public void initialize(Bootstrap<ExampleConfiguration> bootstrap) {
         bootstrap.addBundle(hibernate);
         bootstrap.addBundle(migrations);
     }
 
     @Override
-    public void run(DropwitchConfiguration configuration, Environment environment) throws Exception {
+    public void run(ExampleConfiguration configuration, Environment environment) throws Exception {
         final MasterCommonDao masterCommonDao = new MasterCommonDao(hibernate.getSessionFactory());
         final UserDao userDao = new UserDao(hibernate.getSessionFactory());
 
