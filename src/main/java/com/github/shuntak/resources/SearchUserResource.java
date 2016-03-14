@@ -6,11 +6,9 @@ import com.github.shuntak.entity.dao.PostDao;
 import com.github.shuntak.entity.dao.UserDao;
 import io.dropwizard.hibernate.UnitOfWork;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
+import java.util.List;
 
 @Path("/searchUser")
 @Produces({MediaType.APPLICATION_JSON, "application/x-msgpack"})
@@ -26,7 +24,29 @@ public class SearchUserResource {
 
     @GET
     @UnitOfWork
-    public ResponseCommonBody get() {
-        return new ResponseCommonBody(new ArrayList<>());
+    public ResponseCommonBody get(
+            @QueryParam("findByUserId") String userId,
+            @QueryParam("findByUserPublicScoreGTE") Integer userPublicScoreGTE,
+            @QueryParam("findByUserPublicScoreLTE") Integer userPublicScoreLTE,
+            @QueryParam("findByUserFriendsNumberGTE") Integer userFriendsNumberGTE,
+            @QueryParam("findByUserFriendsNumberLTE") Integer userFriendsNumberLTE,
+            @QueryParam("findByUserFriendsIncludeUserIds") String userFriendsIncludeUserIds,
+            @QueryParam("findByUserFriendsNotIncludeUserIds") String userFriendsNotIncludeUserIds,
+            @QueryParam("findByPostId") String postId,
+            @QueryParam("findByPostDateTimeGTE") Integer postDateTimeGTE,
+            @QueryParam("findByPostDateTimeLTE") Integer postDateTimeLTE,
+            @QueryParam("findByPostItemId") String postItemId,
+            @QueryParam("findByMaxPostItemScoreGTE") Integer maxPostItemScoreGTE,
+            @QueryParam("findByMinPostItemScoreLTE") Integer minPostItemScoreLTE,
+            @QueryParam("findByPostItemState") String postItemState,
+            @QueryParam("findByPostItemStateNotEQ") String postItemStateNotEQ,
+            @QueryParam("findByPostLikeUsersIncludeUserIds") String postLikeUsersIncludeUserIds,
+            @QueryParam("findByPostLikeUsersNotIncludeUserIds") String postLikeUsersNotIncludeUserIds,
+            @QueryParam("limit") @DefaultValue("100") Integer limit
+    ) {
+        List<Object> users = userDao.find(userId, userPublicScoreGTE, userPublicScoreLTE, userFriendsNumberGTE, userFriendsNumberLTE, userFriendsIncludeUserIds, userFriendsNotIncludeUserIds, postId, postDateTimeGTE, postDateTimeLTE, postItemId, maxPostItemScoreGTE, minPostItemScoreLTE,
+                postItemState, postItemStateNotEQ, postLikeUsersIncludeUserIds, postLikeUsersNotIncludeUserIds, limit);
+
+        return new ResponseCommonBody(users);
     }
 }

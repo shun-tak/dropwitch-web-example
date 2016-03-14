@@ -2,7 +2,9 @@ package com.github.shuntak;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.github.shuntak.entity.Item;
 import com.github.shuntak.entity.MasterCommon;
+import com.github.shuntak.entity.Post;
 import com.github.shuntak.entity.User;
 import com.github.shuntak.entity.dao.ItemDao;
 import com.github.shuntak.entity.dao.MasterCommonDao;
@@ -46,6 +48,8 @@ public class ExampleApplication extends Application<ExampleConfiguration> {
 
     private final HibernateBundle<ExampleConfiguration> hibernate = new HibernateBundle<ExampleConfiguration>(
             MasterCommon.class,
+            Item.class,
+            Post.class,
             User.class
     ) {
         @Override
