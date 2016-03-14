@@ -1,16 +1,23 @@
 package com.github.shuntak.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class User {
     private String userId;
     private Long userNo;
     private Integer userPublicScore;
-    private String userFriends;
+    @JsonIgnore
+    private String userFriendsString;
+    @JsonProperty("userFriends")
+    private List<String> userFriends;
     private String userImage;
 
     @Id
@@ -45,12 +52,18 @@ public class User {
 
     @Basic
     @Column(name = "userFriends")
-    public String getUserFriends() {
-        return userFriends;
+    public String getUserFriendsString() {
+        return userFriendsString;
     }
 
-    public void setUserFriends(String userFriends) {
-        this.userFriends = userFriends;
+    public void setUserFriendsString(String userFriends) {
+        this.userFriendsString = userFriends;
+        this.userFriends = Stream.of(StringUtils.split(getUserFriendsString(), ",")).collect(Collectors.toList());
+    }
+
+    @Transient
+    public List<String> getUserFriends() {
+        return userFriends;
     }
 
     @Basic
@@ -74,7 +87,7 @@ public class User {
         if (userNo != null ? !userNo.equals(user.userNo) : user.userNo != null) return false;
         if (userPublicScore != null ? !userPublicScore.equals(user.userPublicScore) : user.userPublicScore != null)
             return false;
-        if (userFriends != null ? !userFriends.equals(user.userFriends) : user.userFriends != null) return false;
+        if (userFriendsString != null ? !userFriendsString.equals(user.userFriendsString) : user.userFriendsString != null) return false;
         if (userImage != null ? !userImage.equals(user.userImage) : user.userImage != null) return false;
 
         return true;
@@ -85,7 +98,7 @@ public class User {
         int result = userId != null ? userId.hashCode() : 0;
         result = 31 * result + (userNo != null ? userNo.hashCode() : 0);
         result = 31 * result + (userPublicScore != null ? userPublicScore.hashCode() : 0);
-        result = 31 * result + (userFriends != null ? userFriends.hashCode() : 0);
+        result = 31 * result + (userFriendsString != null ? userFriendsString.hashCode() : 0);
         result = 31 * result + (userImage != null ? userImage.hashCode() : 0);
         return result;
     }
